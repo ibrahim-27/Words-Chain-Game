@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "194902181605",
+    "project_id": "word-chain-6306d",
+    "storage_bucket": "word-chain-6306d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:194902181605:android:90e86d741438c79c37360c",
+        "android_client_info": {
+          "package_name": "com.example.wordchain"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "194902181605-olqg7hr5epbmmpdfsjivgv4n96ku4fv4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCe6lMrlhs9ly62NcFfAMp5_HWfYI49CLI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "194902181605-olqg7hr5epbmmpdfsjivgv4n96ku4fv4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
