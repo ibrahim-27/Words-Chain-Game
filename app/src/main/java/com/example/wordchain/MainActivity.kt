@@ -4,6 +4,7 @@ import android.animation.Animator
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.airbnb.lottie.LottieAnimationView
 
 class MainActivity : AppCompatActivity() {

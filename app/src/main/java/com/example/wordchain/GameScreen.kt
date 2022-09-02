@@ -1,10 +1,13 @@
 package com.example.wordchain
 
+import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.airbnb.lottie.LottieAnimationView
 import com.example.wordchain.Models.Puzzle
 import com.example.wordchain.databinding.ActivityGameScreenBinding
 import com.google.firebase.database.DataSnapshot
@@ -25,12 +28,19 @@ class GameScreen : AppCompatActivity() {
     var currWord = 1
     var currChar = 0
 
+    /** UI Components **/
+    lateinit var soundEffect:MediaPlayer
+    lateinit var animView: LottieAnimationView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityGameScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
 
+        animView = binding.animSuccess
+
+        /** Game Setup **/
         GameSetup()
 
         /** Whem guess btn is pressed **/
@@ -40,56 +50,22 @@ class GameScreen : AppCompatActivity() {
             if(puzzle.wordsList[currWord].toString() == binding.etGuess.text.toString())
             {
                 CompleteWord()
+                SuccessAnimation()
             }
             else
             {
                 ShowOneChar()
+                WrongAnimation()
             }
         }
     }
 
-    /** If the user enters a wrong guess - show a new single character **/
-    private fun ShowOneChar() {
-        val guessWord = puzzle.wordsList[currWord].toString()
-
-        if(guessWord.length-1 == currChar)
-        {
-            Toast.makeText(this, "no beta", Toast.LENGTH_SHORT).show()
-            return
-        }
-
-
-        val resID = resources.getIdentifier(
-            "tv_grid_${currWord}${currChar}",
-            "id", packageName
-        )
-        val tv = findViewById<View>(resID) as TextView
-        tv.setText(guessWord[currChar].toString())
-
-        currChar++
-    }
-
-    /** If the player guesses the word - complete word is displayed **/
-    private fun CompleteWord() {
-        val guessWord = puzzle.wordsList[currWord].toString()
-
-        for(i in currChar until guessWord.length)
-        {
-            val resID = resources.getIdentifier(
-                "tv_grid_${currWord}${i}",
-                "id", packageName
-            )
-            val tv = findViewById<View>(resID) as TextView
-            tv.setText(guessWord[i].toString())
-        }
-
-        currWord++  // move to next word
-        currChar = 0    // from the start of the word
-
-    }
-
     /** Game setup - fetch a puzzle from database and set the first and last word **/
     private fun GameSetup() {
+
+        animView.pauseAnimation()
+        //soundEffect.pause()
+
         val random: Int = Random().nextInt(4)
         val ref = database.getReference("Puzzles").child(random.toString())
         ref.addValueEventListener(object: ValueEventListener{
@@ -121,5 +97,63 @@ class GameScreen : AppCompatActivity() {
             }
 
         })
+    }
+
+    /** If the user enters a wrong guess - show a new single character **/
+    private fun ShowOneChar() {
+        val guessWord = puzzle.wordsList[currWord].toString()
+
+        if(guessWord.length-1 == currChar)
+        {
+            Toast.makeText(this, "no beta", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+
+        val resID = resources.getIdentifier(
+            "tv_grid_${currWord}${currChar}",
+            "id", packageName
+        )
+        val tv = findViewById<View>(resID) as TextView
+        tv.setText(guessWord[currChar].toString())
+
+        currChar++  // next char
+    }
+
+    /** If the player guesses the word - complete word is displayed **/
+    private fun CompleteWord() {
+        val guessWord = puzzle.wordsList[currWord].toString()
+
+        for(i in currChar until guessWord.length)
+        {
+            val resID = resources.getIdentifier(
+                "tv_grid_${currWord}${i}",
+                "id", packageName
+            )
+            val tv = findViewById<View>(resID) as TextView
+            tv.setText(guessWord[i].toString())
+        }
+
+        currWord++  // move to next word
+        currChar = 0    // from the start of the word
+        
+        if(currWord == 4)
+            startActivity(Intent(this, MainMenu::class.java))
+
+    }
+
+    /** Animations according to the answer **/
+    private fun WrongAnimation() {
+        animView.setAnimation(R.raw.animation_wrong)
+        animView.playAnimation()
+        soundEffect = MediaPlayer.create(this, R.raw.sound_wrong)
+        soundEffect.start()
+    }
+
+    private fun SuccessAnimation() {
+        animView.setAnimation(R.raw.animation_success)
+        animView.playAnimation()
+        soundEffect = MediaPlayer.create(this, R.raw.sound_success)
+        soundEffect.start()
     }
 }
