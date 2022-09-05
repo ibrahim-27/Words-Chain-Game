@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "194902181605",
+    "firebase_url": "https://word-chain-6306d-default-rtdb.firebaseio.com",
     "project_id": "word-chain-6306d",
     "storage_bucket": "word-chain-6306d.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "194902181605-svjld7rtda338lnokk450n3pkkg1fc7e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.wordchain",
+            "certificate_hash": "c0c4b4493f846acc19db4d80f445352b32b7a585"
+          }
+        },
         {
           "client_id": "194902181605-olqg7hr5epbmmpdfsjivgv4n96ku4fv4.apps.googleusercontent.com",
           "client_type": 3

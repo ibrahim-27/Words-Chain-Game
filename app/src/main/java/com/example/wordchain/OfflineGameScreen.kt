@@ -18,7 +18,7 @@ import com.google.firebase.ktx.Firebase
 import java.util.*
 import kotlin.collections.ArrayList
 
-class GameScreen : AppCompatActivity() {
+class OfflineGameScreen : AppCompatActivity() {
 
     /** Firebase references **/
     val database = Firebase.database
@@ -70,7 +70,7 @@ class GameScreen : AppCompatActivity() {
         val ref = database.getReference("Puzzles").child(random.toString())
         ref.addValueEventListener(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
-                puzzle = Puzzle(snapshot.getValue() as ArrayList<*>)
+                puzzle = Puzzle(snapshot.value as ArrayList<*>)
 
                 var row = 0
                 for (pz in puzzle.wordsList)
@@ -93,7 +93,7 @@ class GameScreen : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(this@GameScreen, error.toString(), Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@OfflineGameScreen, error.toString(), Toast.LENGTH_SHORT).show()
             }
 
         })

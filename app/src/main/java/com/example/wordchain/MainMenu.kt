@@ -4,21 +4,33 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.wordchain.databinding.ActivityMainMenuBinding
+import com.google.firebase.auth.FirebaseAuth
 
 class MainMenu : AppCompatActivity() {
 
     lateinit var binding: ActivityMainMenuBinding
-
+    var  auth=FirebaseAuth.getInstance()
+    var user=auth.currentUser
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
 
-
-        binding.btnPlay.setOnClickListener()
+        binding.btnPlayOnline.setOnClickListener(){
+            if(user!=null){
+                var intent=Intent(this,OnlineHome::class.java)
+                startActivity(intent)
+            }
+            else{
+//                login
+                var intent=Intent(this,SignInActivity::class.java)
+                startActivity(intent)
+            }
+        }
+        binding.btnPlayOffline.setOnClickListener()
         {
-            startActivity(Intent(this, GameScreen::class.java))
+            startActivity(Intent(this, OfflineGameScreen::class.java))
         }
 
         /** Exit from the Game **/

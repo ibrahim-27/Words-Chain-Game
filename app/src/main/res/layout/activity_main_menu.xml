@@ -7,6 +7,20 @@
     android:background="@color/light_blue"
     tools:context=".MainMenu" >
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_play_offline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:width="150dp"
+        android:background="@drawable/btn_bg"
+        android:text="Play Offline"
+        android:textColor="@color/light_blue"
+        app:layout_constraintEnd_toEndOf="@+id/btn_play_online"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/btn_play_online"
+        app:layout_constraintTop_toBottomOf="@+id/btn_play_online" />
+
     <TextView
         android:id="@+id/tv_heading"
         android:layout_width="wrap_content"
@@ -43,15 +57,18 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_play"
+        android:id="@+id/btn_play_online"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="40dp"
         android:width="150dp"
         android:background="@drawable/btn_bg"
-        android:text="Play"
-        android:textColor="@color/light_blue"
+        android:backgroundTint="#1D73EB"
+        android:text="Play Online"
+
+        android:textColor="@color/cultured"
         app:layout_constraintEnd_toEndOf="@+id/tv_heading"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="@+id/tv_heading"
         app:layout_constraintTop_toBottomOf="@+id/tv_heading2" />
 
@@ -64,10 +81,10 @@
         android:background="@drawable/btn_bg"
         android:text="How to Play"
         android:textColor="@color/light_blue"
-        app:layout_constraintEnd_toEndOf="@+id/btn_play"
+        app:layout_constraintEnd_toEndOf="@+id/btn_play_offline"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/btn_play"
-        app:layout_constraintTop_toBottomOf="@+id/btn_play" />
+        app:layout_constraintStart_toStartOf="@+id/btn_play_offline"
+        app:layout_constraintTop_toBottomOf="@+id/btn_play_offline" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_quit"
