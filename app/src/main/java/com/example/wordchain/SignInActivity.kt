@@ -40,7 +40,7 @@ private lateinit var googleSignInClient: GoogleSignInClient
 
 		googleSignInClient = GoogleSignIn.getClient(this , gso)
 
-		var btn =findViewById<SignInButton>(R.id.google_button)
+		var btn = findViewById<SignInButton>(R.id.google_button)
 			btn.setOnClickListener {
 			signInGoogle()
 		}
@@ -55,7 +55,7 @@ private lateinit var googleSignInClient: GoogleSignInClient
 	private val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
 			result ->
 		if (result.resultCode == Activity.RESULT_OK){
-
+			//Toast.makeText(this, result.resultCode.toString(), Toast.LENGTH_SHORT).show()
 			val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
 			handleResults(task)
 		}
@@ -65,19 +65,22 @@ private lateinit var googleSignInClient: GoogleSignInClient
 		if (task.isSuccessful){
 			val account : GoogleSignInAccount? = task.result
 			if (account != null){
-
-				var intent=Intent(this,OnlineHome::class.java)
-				startActivity(intent)
+				updateUI(account)
 			}
-		}else{
+
+		}
+		else{
 			Toast.makeText(this, task.exception.toString(), Toast.LENGTH_SHORT).show()
 		}
+
 	}
 
 	private fun updateUI(account: GoogleSignInAccount) {
 		val credential = GoogleAuthProvider.getCredential(account.idToken , null)
 		auth.signInWithCredential(credential).addOnCompleteListener {
 			if (it.isSuccessful) { // Main game
+				val intent=Intent(this,OnlineHome::class.java)
+				startActivity(intent)
 			}
 			else { 			Toast.makeText(this, it.exception.toString() , Toast.LENGTH_SHORT).show()
 

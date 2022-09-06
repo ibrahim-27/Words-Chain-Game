@@ -19,6 +19,7 @@ class Room {
 			this.turn=turn
 			this.puzzle = Puzzle
 		}
+
 	constructor(id: String, Player1_id: String,Player2_id: String ,turn:Long, Puzzle: ArrayList<String>,wordno:Long,charNo:Long){
 		this.id = id
 		this.Player1_id = Player1_id

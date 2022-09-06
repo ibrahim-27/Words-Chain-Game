@@ -42,7 +42,7 @@ class OnlineGameScreen : AppCompatActivity() {
 
 	//Firebase
 	private var database = FirebaseDatabase.getInstance()
-	private var auth=FirebaseAuth.getInstance().currentUser
+	private var auth = FirebaseAuth.getInstance().currentUser
 
 
 	override fun onCreate(savedInstanceState: Bundle?) {

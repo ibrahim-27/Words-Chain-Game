@@ -24,15 +24,17 @@ class OnlineHome : AppCompatActivity() {
 
 	/** Firebase references **/
 	val database = Firebase.database
-	val auth=FirebaseAuth.getInstance()
+	val auth = FirebaseAuth.getInstance()
+
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_online_home)
 
-		if(auth.currentUser==null){
+		if(auth.currentUser == null){
 			var intent=Intent(this,MainMenu::class.java)
 			startActivity(intent)
 		}
+
 		var crbtn=findViewById<Button>(R.id.btn_createroom)
 		crbtn.setOnClickListener(){
 			lateinit var puzzle:Puzzle
