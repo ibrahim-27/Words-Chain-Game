@@ -51,8 +51,9 @@ class OnlineGameScreen : AppCompatActivity() {
 
 		setContentView(binding.root)
 
-		if(auth==null){
-			var intent=Intent(this,MainMenu::class.java)
+
+		if(auth == null){
+			val intent=Intent(this,MainMenu::class.java)
 			startActivity(intent)
 		}
 		animView = binding.animSuccesso
@@ -92,12 +93,9 @@ class OnlineGameScreen : AppCompatActivity() {
 					if(this@OnlineGameScreen::room.isInitialized && room.Player2_id!=""){
 						startGame()
 					}
-
-
 				}
 
-				override fun onCancelled(error: DatabaseError) { //					Toast.makeText(this@OfflineGameScreen, error.toString(), Toast.LENGTH_SHORT).show()
-				}
+				override fun onCancelled(error: DatabaseError){}
 
 			})
 		}

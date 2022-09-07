@@ -82,8 +82,8 @@ private lateinit var googleSignInClient: GoogleSignInClient
 				val intent=Intent(this,OnlineHome::class.java)
 				startActivity(intent)
 			}
-			else { 			Toast.makeText(this, it.exception.toString() , Toast.LENGTH_SHORT).show()
-
+			else {
+				Toast.makeText(this, it.exception.toString() , Toast.LENGTH_SHORT).show()
 			}
 		}}
 }

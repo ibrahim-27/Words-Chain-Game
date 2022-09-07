@@ -11,7 +11,8 @@
         android:theme="@style/Theme.WordChain" >
         <activity
             android:name=".OnlineGameScreen"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustNothing"/>
         <activity
             android:name=".OnlineHome"
             android:exported="false" />
@@ -20,7 +21,8 @@
             android:exported="false" />
         <activity
             android:name=".OfflineGameScreen"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name=".MainMenu"
             android:exported="false" />

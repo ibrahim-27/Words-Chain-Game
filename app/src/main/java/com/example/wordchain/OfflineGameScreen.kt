@@ -57,6 +57,9 @@ class OfflineGameScreen : AppCompatActivity() {
                 ShowOneChar()
                 WrongAnimation()
             }
+
+            /** Setting edit text empty **/
+            binding.etGuess.setText("")
         }
     }
 

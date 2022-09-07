@@ -60,7 +60,7 @@ class OnlineHome : AppCompatActivity() {
 					var room= Room(id, auth.currentUser!!.uid,turn ,pzl)
 					myRef.setValue(room)
 
-					intent= Intent(this@OnlineHome,OnlineGameScreen::class.java )
+					intent = Intent(this@OnlineHome,OnlineGameScreen::class.java )
 					intent.putExtra("key",myRef.key!!)
 					startActivity(intent)
 				}
@@ -74,8 +74,6 @@ class OnlineHome : AppCompatActivity() {
 		var jrbtn=findViewById<Button>(R.id.btn_joinroom)
 		jrbtn.setOnClickListener(){
 			showDialog()
-
-
 		}
 
 	}
