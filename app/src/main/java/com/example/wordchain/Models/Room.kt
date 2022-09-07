@@ -10,7 +10,7 @@ class Room {
 		var puzzle: ArrayList<String>
 
 	var wordNo:Long=0
-	var charNo:Long=0
+	var charNo:Long=-1
 
 
 		constructor(id: String, Player1_id: String, turn: Long, Puzzle: ArrayList<String>) {

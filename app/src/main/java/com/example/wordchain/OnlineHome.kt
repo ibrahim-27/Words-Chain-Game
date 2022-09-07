@@ -102,15 +102,15 @@ class OnlineHome : AppCompatActivity() {
 							var sid=room.key!!.toString().substring(1,3)
 							sid=sid+room.key!!.toString().substring(room.key!!.toString().length-5,room.key!!.toString().length)
 							if (sid == id ) {
-//								if(room.child("player1_id").value.toString()!=auth.uid.toString()){
+								if(room.child("player1_id").value.toString()!=auth.uid.toString()){
 								id=room.child("id").value.toString()
 								database.getReference("ROOM").child(room.key!!.toString()).child("player2_id").setValue(auth.uid.toString())
 								intent= Intent(this@OnlineHome,OnlineGameScreen::class.java )
 								intent.putExtra("key",room.key!!)
 								startActivity(intent)
-//								}else{
-//									Toast.makeText(this@OnlineHome,"You can not join a Room twice!",Toast.LENGTH_LONG).show()
-//								}
+								}else{
+									Toast.makeText(this@OnlineHome,"You can not join a Room twice!",Toast.LENGTH_LONG).show()
+								}
 							}
 						}
 					}
