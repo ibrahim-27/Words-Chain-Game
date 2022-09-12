@@ -48,9 +48,8 @@ class OnlineGameScreen : AppCompatActivity() {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		binding = ActivityOnlineGameScreenBinding.inflate(layoutInflater)
-
 		setContentView(binding.root)
-
+		supportActionBar?.hide()
 
 		if (auth == null) {
 			val intent = Intent(this, MainMenu::class.java)
@@ -116,20 +115,17 @@ class OnlineGameScreen : AppCompatActivity() {
 				turn = 1
 			}
 			database.getReference("ROOM").child(roomId).child("turn").setValue(turn)
-
-
 		}
 
 
 
-		/** Three on data change are used to access database when these things changes and update UI of both devices**/
+		/** Three on data change are used to access database when these things changes and update UI of both devices **/
 
 		/* For Completing Full Word*/
 		var ref = database.getReference("ROOM").child(roomId).child("wordNo")
 		ref.addValueEventListener(object : ValueEventListener {
 			override fun onDataChange(snapshot: DataSnapshot) {
-				if (snapshot.value.toString().toInt() != 0 && snapshot.value.toString().toInt() != 4
-				) {
+				if (snapshot.value.toString().toInt() != 0 && snapshot.value.toString().toInt() != 4) {
 					currWord = snapshot.value.toString().toInt()
 					puzzle = Puzzle(room.puzzle)
 					val guessWord = puzzle.wordsList[currWord].toString()
@@ -186,7 +182,7 @@ class OnlineGameScreen : AppCompatActivity() {
 				var charNo = snapshot.value.toString().toInt()
 				if (charNo != -1) {
 					if (guessWord.length - 1 == charNo) {
-						Toast.makeText(this@OnlineGameScreen, "no beta", Toast.LENGTH_SHORT).show()
+						Toast.makeText(this@OnlineGameScreen, "Last character cannot be displayed", Toast.LENGTH_SHORT).show()
 						return
 					}
 
@@ -282,12 +278,18 @@ class OnlineGameScreen : AppCompatActivity() {
 		//			tv.setText(guessWord[i].toString())
 		//		}
 		//
+
 		database.getReference("ROOM").child(roomId).child("wordNo").setValue(currWord)
 
 		currChar = -1    // from the start of the word
 		database.getReference("ROOM").child(roomId).child("charNo").setValue(currChar)
 
-		if (currWord == 4) startActivity(Intent(this, MainMenu::class.java))
+		if (currWord == 3) {
+			Toast.makeText(this@OnlineGameScreen, "Finished", Toast.LENGTH_SHORT).show()
+			val i = Intent(this, MainMenu::class.java)
+			startActivity(i)
+			finishAffinity()
+		}
 
 	}
 

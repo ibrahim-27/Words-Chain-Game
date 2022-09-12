@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun onAnimationEnd(p0: Animator?) {
                 startActivity(Intent(this@MainActivity, MainMenu::class.java))
+                finish()
             }
 
             override fun onAnimationCancel(p0: Animator?) {}

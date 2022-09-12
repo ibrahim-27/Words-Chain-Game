@@ -3,6 +3,7 @@ package com.example.wordchain
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.example.wordchain.databinding.ActivityMainMenuBinding
 import com.google.firebase.auth.FirebaseAuth
 
@@ -19,12 +20,12 @@ class MainMenu : AppCompatActivity() {
 
         binding.btnPlayOnline.setOnClickListener(){
             if(user!=null){
-                var intent=Intent(this,OnlineHome::class.java)
+                val intent=Intent(this,OnlineHome::class.java)
                 startActivity(intent)
             }
             else{
 //                login
-                var intent=Intent(this,SignInActivity::class.java)
+                val intent=Intent(this,SignInActivity::class.java)
                 startActivity(intent)
             }
         }
